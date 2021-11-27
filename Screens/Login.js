@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { ScrollView, View, TextInput, Text, TouchableOpacity, Alert } from 'react-native'
+import { Button, Icon } from 'react-native-elements'
 import axios from 'axios'
 import styles from '../utils/styles'
 
 const Login = (props) => {
+    const { navigation } = props
     const [values, setValues] = useState({})
 
     const setState = (obj) => {
@@ -51,12 +53,25 @@ const Login = (props) => {
                     secureTextEntry
                     onChangeText={e => setState({ password: e })}
                 />
-                <TouchableOpacity style={styles.button} onPress={onSubmit}>
+                <Button
+                    title='Login'
+                    buttonStyle={styles.submitButton}
+                    icon={
+                        <Icon
+                            name='arrow-right'
+                            color='white'
+                            type='evilicon'
+                            size={30}
+                        />
+                    }
+                    iconRight
+                />
+                {/* <TouchableOpacity style={styles.button} onPress={onSubmit}>
                     <Text style={{ color: '#fff' }}>Login</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <View style={styles.registerHere}>
                     <Text>Don't have an Account?&nbsp;</Text>
-                    <TouchableOpacity onPress={() => props.setLoginPage(false)}>
+                    <TouchableOpacity onPress={() => navigation.push('Register')}>
                         <Text style={styles.link}>Register Here!</Text>
                     </TouchableOpacity>
                 </View>

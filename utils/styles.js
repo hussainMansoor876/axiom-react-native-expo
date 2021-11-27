@@ -43,6 +43,42 @@ const styles = StyleSheet.create({
     },
     link: {
         color: '#2196f3'
+    },
+    submitButton: {
+        margin: 10,
+        borderRadius: 10
+    },
+    todoStyle: {
+        flexDirection: 'row',
+        marginTop: 10
+    },
+    todoInput: {
+        flex: 3
+    },
+    todoButton: {
+        flex: 1,
+        marginTop: 8,
+        marginRight: 6
+    },
+    todoList: {
+        flexDirection: 'row',
+        flex: 1,
+        borderBottomColor: 'rgba(0, 0, 0, 0.2)',
+        borderBottomWidth: 1
+    },
+    todoTask: {
+        flex: 3,
+        paddingLeft: 6,
+        paddingTop: 14
+    },
+    todoActions: {
+        flex: 2,
+        flexDirection: 'row',
+        paddingBottom: 8
+    },
+    deleteButton: {
+        backgroundColor: 'red',
+        borderRadius: 5
     }
 })
 

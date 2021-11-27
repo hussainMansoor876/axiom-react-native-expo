@@ -4,6 +4,7 @@ import axios from 'axios'
 import styles from '../utils/styles'
 
 const Register = (props) => {
+    const { navigation } = props
     const [values, setValues] = useState({})
 
     const setState = (obj) => {
@@ -68,7 +69,7 @@ const Register = (props) => {
                 </TouchableOpacity>
                 <View style={styles.registerHere}>
                     <Text>Already have an Account?&nbsp;</Text>
-                    <TouchableOpacity onPress={() => props.setLoginPage(true)}>
+                    <TouchableOpacity onPress={() => navigation.push('Login')}>
                         <Text style={styles.link}>LogIn Here!</Text>
                     </TouchableOpacity>
                 </View>

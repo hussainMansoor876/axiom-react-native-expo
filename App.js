@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Login, Register } from './Screens'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './Redux/store'
+import { StackNavigator } from './Navigation'
 
 const App = () => {
-  const [loginPage, setLoginPage] = useState(true)
-
   return (
-    <View style={styles.container}>
-      {loginPage ? <Login setLoginPage={setLoginPage} /> : <Register setLoginPage={setLoginPage} />}
-    </View>
+    <Provider store={store} >
+      <PersistGate persistor={persistor}>
+        <SafeAreaProvider>
+          <View style={styles.container}>
+            <StackNavigator />
+          </View>
+        </SafeAreaProvider>
+      </PersistGate>
+    </Provider>
   )
 }
 
