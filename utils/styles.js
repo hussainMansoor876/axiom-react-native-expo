@@ -79,6 +79,21 @@ const styles = StyleSheet.create({
     deleteButton: {
         backgroundColor: 'red',
         borderRadius: 5
+    },
+    emailText: {
+        fontSize: 24,
+        flex: 4,
+        paddingLeft: 6,
+        paddingTop: 10
+    },
+    logoutView: {
+        borderBottomColor: 'rgba(0, 0, 0, 0.2)',
+        borderBottomWidth: 1,
+        paddingBottom: 6
+    },
+    editView: {
+        flex: 2,
+        flexDirection: 'row'
     }
 })
 

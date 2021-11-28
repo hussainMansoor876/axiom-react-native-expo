@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import { ScrollView, View, TextInput, Text, TouchableOpacity, Alert } from 'react-native'
 import { Button, Icon } from 'react-native-elements'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../Redux/Actions/authActions'
 import styles from '../utils/styles'
+import { allPaths } from '../utils/constant'
+
 
 const Login = (props) => {
+    const dispatch = useDispatch()
     const { navigation } = props
     const [values, setValues] = useState({})
 
@@ -28,6 +33,8 @@ const Login = (props) => {
 
                 if (data?.success) {
                     Alert.alert('Successfully LoggedIn!')
+                    dispatch(loginUser(data?.user))
+                    navigation.push(allPaths.TODO)
                 }
                 else {
                     Alert.alert(data?.message)
@@ -54,6 +61,7 @@ const Login = (props) => {
                     onChangeText={e => setState({ password: e })}
                 />
                 <Button
+                    onPress={onSubmit}
                     title='Login'
                     buttonStyle={styles.submitButton}
                     icon={
@@ -71,7 +79,7 @@ const Login = (props) => {
                 </TouchableOpacity> */}
                 <View style={styles.registerHere}>
                     <Text>Don't have an Account?&nbsp;</Text>
-                    <TouchableOpacity onPress={() => navigation.push('Register')}>
+                    <TouchableOpacity onPress={() => navigation.push(allPaths.REGISTER)}>
                         <Text style={styles.link}>Register Here!</Text>
                     </TouchableOpacity>
                 </View>

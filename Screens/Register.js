@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ScrollView, View, TextInput, Text, TouchableOpacity, Alert } from 'react-native'
 import axios from 'axios'
 import styles from '../utils/styles'
+import { allPaths } from '../utils/constant'
 
 const Register = (props) => {
     const { navigation } = props
@@ -9,8 +10,6 @@ const Register = (props) => {
 
     const setState = (obj) => {
         setValues({ ...values, ...obj })
-
-        console.log('values', values)
     }
 
     const onSubmit = () => {
@@ -19,8 +18,6 @@ const Register = (props) => {
             return Alert.alert('Please Fill All fields!')
         }
 
-        console.log('****')
-
         axios.post(`https://axiom-node-example.herokuapp.com/auth/register`, values)
             .then((res) => {
                 const { data } = res
@@ -28,6 +25,7 @@ const Register = (props) => {
 
                 if (data?.success) {
                     Alert.alert('Successfully Registered!')
+                    navigation.push(allPaths.LOGIN)
                 }
             })
             .catch(e => console.log('e****', e))
@@ -69,7 +67,7 @@ const Register = (props) => {
                 </TouchableOpacity>
                 <View style={styles.registerHere}>
                     <Text>Already have an Account?&nbsp;</Text>
-                    <TouchableOpacity onPress={() => navigation.push('Login')}>
+                    <TouchableOpacity onPress={() => navigation.push(allPaths.LOGIN)}>
                         <Text style={styles.link}>LogIn Here!</Text>
                     </TouchableOpacity>
                 </View>
