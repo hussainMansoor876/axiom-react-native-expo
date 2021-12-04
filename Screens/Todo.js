@@ -5,10 +5,8 @@ import { Button, Icon, Input, Text } from 'react-native-elements'
 import axios from 'axios'
 import { removeUser } from '../Redux/Actions/authActions'
 import styles from '../utils/styles'
-import { allPaths } from '../utils/constant'
 
 const Todo = (props) => {
-    const { navigation } = props
     const dispatch = useDispatch()
     const user = useSelector((state) => state?.authReducer?.user)
     const [task, setTask] = useState('')
@@ -19,7 +17,7 @@ const Todo = (props) => {
     useEffect(() => {
         if (!user || !user?._id) {
             Alert.alert('Please Login First to Access this Screen!')
-            return navigation.push(allPaths.LOGIN)
+            return dispatch(removeUser())
         }
 
         getTodo()
@@ -39,7 +37,6 @@ const Todo = (props) => {
 
     const logout = () => {
         dispatch(removeUser())
-        navigation.push(allPaths.LOGIN)
     }
 
     const addTodo = () => {

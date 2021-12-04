@@ -1,10 +1,11 @@
 import React from 'react'
+import 'react-native-gesture-handler'
 import { StyleSheet, View } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './Redux/store'
-import { StackNavigator } from './Navigation'
+import Navigation from './Navigation'
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
       <PersistGate persistor={persistor}>
         <SafeAreaProvider>
           <View style={styles.container}>
-            <StackNavigator />
+            <Navigation />
           </View>
         </SafeAreaProvider>
       </PersistGate>

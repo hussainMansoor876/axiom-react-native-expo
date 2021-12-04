@@ -7,11 +7,11 @@ import { loginUser } from '../Redux/Actions/authActions'
 import styles from '../utils/styles'
 import { allPaths } from '../utils/constant'
 
-
 const Login = (props) => {
     const dispatch = useDispatch()
     const { navigation } = props
     const [values, setValues] = useState({})
+    const [loading, setLoading] = useState(false)
 
     const setState = (obj) => {
         setValues({ ...values, ...obj })
@@ -24,24 +24,29 @@ const Login = (props) => {
             return Alert.alert('Please Fill All fields!')
         }
 
+        setLoading(true)
+
         console.log('****')
 
         axios.post(`https://axiom-node-example.herokuapp.com/auth/login`, values)
             .then((res) => {
                 const { data } = res
                 console.log('data', data)
+                setLoading(false)
 
                 if (data?.success) {
                     Alert.alert('Successfully LoggedIn!')
                     dispatch(loginUser(data?.user))
-                    navigation.push(allPaths.TODO)
                 }
                 else {
                     Alert.alert(data?.message)
                 }
 
             })
-            .catch(e => console.log('e****', e))
+            .catch(e => {
+                setLoading(false)
+                console.log('e****', e)
+            })
     }
 
     return (
@@ -64,6 +69,7 @@ const Login = (props) => {
                     onPress={onSubmit}
                     title='Login'
                     buttonStyle={styles.submitButton}
+                    loading={loading}
                     icon={
                         <Icon
                             name='arrow-right'
